@@ -1,0 +1,20 @@
+version: '3'
+# "This Docker Compose is Installing and Connecting Postgres database"
+services:
+  drupal:
+      build: .
+      image: drupaltesting
+      ports:
+         - "8080:80"
+      depends_on:
+          - database
+  database:
+          image: postgres
+          volumes:
+            - drupal-data:/var/lib/postgresql/data"
+          depends_on:
+            - volumes
+          environment:
+             POSTGRES_PASSWORD: omkarsrcmnik
+  volumes:
+    drupal-data:
